@@ -1,0 +1,22 @@
+{
+  "name": "nabeghe/light-localization",
+  "description": "A light weight and path-based PHP localization library that translations are loaded up when needed.",
+  "type": "library",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Nabeghe/LightLocalization",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Nabeghe\\LightLocalization\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Hadi Akbarzadeh",
+      "email": "hadicoder@gmail.com",
+      "homepage": "https://elatel.ir",
+      "role": "Developer"
+    }
+  ],
+  "require": {}
+}
