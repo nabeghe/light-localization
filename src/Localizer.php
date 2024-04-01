@@ -28,7 +28,7 @@ class Localizer
     /**
      * The default translation returned if the requested key (translation) doesn't exist.
      * @see self::get()
-     * @var mixed
+     * @var Localizer|string
      */
     protected $defaultTranslation;
 
@@ -51,7 +51,7 @@ class Localizer
      * Constructor.
      * @param string $path The root path where the directories related to the codes are located.
      * @param string $code Optional. Localization code. Default generic.
-     * @param string $default_translation Optional. The default translation returned if the requested key (translation) doesn't exist.. Default empty string.
+     * @param Localizer|string $default_translation Optional. The default translation returned if the requested key (translation) doesn't exist.. Default empty string.
      */
     public function __construct(string $path, string $code = 'generic', $default_translation = '')
     {
@@ -151,6 +151,12 @@ class Localizer
         if (!isset($this->translators[$translator_name])) {
             $this->load($translator_name);
         }
-        return $this->translators[$translator_name][$key] ?? $this->defaultTranslation;
+        if (isset($this->translators[$translator_name][$key])) {
+            return $this->translators[$translator_name][$key];
+        }
+        if (is_string($this->defaultTranslation)) {
+            return $this->defaultTranslation;
+        }
+        return $this->defaultTranslation->get($key, $translator_name);
     }
 }

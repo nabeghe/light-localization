@@ -13,6 +13,8 @@ return new class extends Translator {
 
     public string $unsuccess = 'Bye';
 
+    public string $ops = 'Ops';
+
     public function message()
     {
         $msgs = [

@@ -7,4 +7,5 @@ return [
     'secondary_btn_title' => 'No',
     'success' => 'Welcome',
     'unsuccess' => 'Bye',
+    'error' => 'Ops',
 ];
