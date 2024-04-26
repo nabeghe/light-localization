@@ -1,19 +1,8 @@
-<?php
+<?php return new class extends \Nabeghe\LightLocalization\Translator {
 
-use Nabeghe\LightLocalization\Translator;
-
-return new class extends Translator {
     public string $title = 'Light Localization';
 
-    public string $primary_btn_title = 'Yes';
-
-    public string $secondary_btn_title = 'No';
-
-    public string $success = 'Welcome';
-
-    public string $unsuccess = 'Bye';
-
-    public string $ops = 'Ops';
+    public string $description = 'A light weight, key-value & path-based PHP localization library that translations are loaded up when needed.';
 
     public function message()
     {
@@ -27,4 +16,5 @@ return new class extends Translator {
         ];
         return $msgs[array_rand($msgs)];
     }
+
 };
