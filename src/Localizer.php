@@ -163,7 +163,8 @@ class Localizer
         if (!isset($this->translators[$translator])) {
             $this->load($translator);
         }
-        return isset($this->translators[$translator][$key]);
+        return isset($this->translators[$translator][$key])
+            || (!is_string($this->defaultTranslation) && $this->defaultTranslation->has($key, $translator));
     }
 
     /**

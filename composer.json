@@ -2,7 +2,7 @@
   "name": "nabeghe/light-localization",
   "description": "A light weight, key-value & path-based PHP localization library that translations are loaded up when needed.",
   "type": "library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/nabeghe/light-localization",
   "license": "MIT",
   "autoload": {
