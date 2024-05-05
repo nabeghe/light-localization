@@ -40,7 +40,54 @@ class Localizer
     protected array $translators = [];
 
     /**
-     * Retrieves the lost of loaded translators.
+     * Retrieves the root path.
+     */
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Retrieves the current language code.
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * Changes the localization code.
+     * @param  string  $code  New code.
+     * @param  bool  $refresh  Optional. After changing the code, should it reload the loaded translators or remove all of them from the loaded state? Default false.
+     */
+    public function setCode(string $code, bool $refresh = false): void
+    {
+        $this->code = $code;
+        if ($refresh) {
+            $this->refresh();
+        } else {
+            $this->translators = [];
+        }
+    }
+
+    /**
+     * An alias for the {@see setcode}
+     */
+    public function recode(string $code, bool $refresh = false): void
+    {
+        $this->setCode($code, $refresh);
+    }
+
+    /**
+     * Retrieves the default translation.
+     */
+    public function getDefaultTranslation()
+    {
+        return $this->defaultTranslation;
+    }
+
+    /**
+     * Retrieves the list of loaded translators.
      * @return array
      */
     public function getTranslators(): array
@@ -135,21 +182,6 @@ class Localizer
             return true;
         }
         return false;
-    }
-
-    /**
-     * Changes the localization code.
-     * @param  string  $code  New code.
-     * @param  bool  $refresh  Optional. After changing the code, should it reload the loaded translators or remove all of them from the loaded state? Default false.
-     */
-    public function recode(string $code, bool $refresh = false): void
-    {
-        $this->code = $code;
-        if ($refresh) {
-            $this->refresh();
-        } else {
-            $this->translators = [];
-        }
     }
 
     /**
