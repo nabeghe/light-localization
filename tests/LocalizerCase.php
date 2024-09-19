@@ -36,7 +36,16 @@ abstract class LocalizerCase extends TestCase
     public function testForDifferentTranslator(): void
     {
         $expected = 'Hadi Akbarzadeh';
-        $translated = $this->localizer->get('name', 'developer'); // from `names.php` file.
+        $translated = $this->localizer->get('name', 'developer'); // from `developer.php` file.
         $this->assertSame($expected, $translated);
+    }
+
+    public function testRandom(): void
+    {
+        $expected = 'Hadi Akbarzadeh';
+        $translated = $this->localizer->rnd('symbol', 'developer'); // from `developer.php` file.
+        $this->assertSame(true, in_array($translated, [
+            'H', 'A', 'D', 'I', 'E', 'L', 'S', 'A',
+        ]));
     }
 }

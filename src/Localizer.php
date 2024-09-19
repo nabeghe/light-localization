@@ -4,13 +4,8 @@
  * Localizer class.
  * @package Nabeghe\LightLocalization
  */
-class Localizer
+class Localizer implements LocalizerInterface
 {
-    /**
-     * Default translator name.
-     */
-    public const DEFAULT_TRANSLATOR = 'main';
-
     /**
      * The root path, where the directories related to the language codes are located.
      * @var string
@@ -101,7 +96,7 @@ class Localizer
      * @param  string  $code  Optional. Localization code. Default `generic`.
      * @param  Localizer|string  $defaultTranslation  Optional. Default translation. Default is empty string.
      */
-    public function __construct(string $path, string $code = 'generic', $defaultTranslation = '')
+    public function __construct(string $path, string $code = self::DEFAULT_CODE, $defaultTranslation = '')
     {
         $this->path = rtrim($path, '/');
         $this->code = $code;
@@ -212,6 +207,27 @@ class Localizer
         }
         if (isset($this->translators[$translator][$key])) {
             return $this->translators[$translator][$key];
+        }
+        if (is_string($this->defaultTranslation)) {
+            return $this->defaultTranslation;
+        }
+        return $this->defaultTranslation->get($key, $translator);
+    }
+
+    /**
+     * It's's similar to the {@see self::get()} method, with the difference that if the output is an array, it randomly returns one of the values within it.
+     * @param  string  $key
+     * @param  string  $translator
+     * @return mixed|Localizer|string
+     */
+    public function rnd(string $key, string $translator = self::DEFAULT_TRANSLATOR)
+    {
+        $text = $this->get($key, $translator);
+        if (!is_array($text)) {
+            return $text;
+        }
+        if ($text) {
+            return $text[array_rand($text)];
         }
         if (is_string($this->defaultTranslation)) {
             return $this->defaultTranslation;
