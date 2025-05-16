@@ -34,18 +34,19 @@ interface LocalizerInterface
     public function setCode(string $code, bool $refresh = false);
 
     /**
-     * Retrieves the default translation.
+     * Returns the default translation.
+     * @return Localizer|string
      */
     public function getDefaultTranslation();
 
     /**
-     * Retrieves the list of loaded translators.
+     * Returns the list of loaded translators.
      * @return array
      */
     public function getTranslators(): array;
 
     /**
-     * Retrieves the file path of a translator.
+     * Returns the file path of a translator.
      * @param  string  $translator  Optional. The translator file name without `.php` extension. Default `main`.
      * @return string
      */
@@ -85,15 +86,16 @@ interface LocalizerInterface
     public function unload(string $translator = self::DEFAULT_TRANSLATOR);
 
     /**
-     * Checks whether a key exists in a translator or not.
+     * Checks whether a key exists in a translator or not.<br>
      * @param  string  $key
      * @param  string  $translator  Translator file name.
+     * @param  bool  $checkDefault  Should the default translation also be checked if it is a Localizer? Default true.
      * @return bool
      */
-    public function has(string $key, $translator = self::DEFAULT_TRANSLATOR);
+    public function has(string $key, $translator = self::DEFAULT_TRANSLATOR, bool $checkDefault = true): bool;
 
     /**
-     * Retrieves a string or translation using its key.
+     * Returns a string or translation using its key.
      * @param  string  $key  The key is in the translator.
      * @param  string  $translator  Translator file name.
      * @return string|mixed
@@ -101,7 +103,7 @@ interface LocalizerInterface
     public function get(string $key, string $translator = self::DEFAULT_TRANSLATOR);
 
     /**
-     * It's's similar to the {@see self::get()} method, with the difference that if the output is an array, it randomly returns one of the values within it.
+     * It's similar to the {@see self::get()} method, with the difference that if the output is an array, it randomly returns one of the values within it.
      * @param  string  $key
      * @param  string  $translator
      * @return mixed|Localizer|string

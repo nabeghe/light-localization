@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-use Nabeghe\LightLocalization\Localizer;
 use PHPUnit\Framework\TestCase;
+use Nabeghe\LightLocalization\Localizer;
 
 abstract class LocalizerCase extends TestCase
 {
@@ -16,6 +16,7 @@ abstract class LocalizerCase extends TestCase
             'fa',
             new Localizer(__DIR__.'/data/'.$this->getTranslatorsDirectoryName(), 'en'),
         );
+
         parent::__construct($name, $data, $dataName);
     }
 
@@ -37,6 +38,7 @@ abstract class LocalizerCase extends TestCase
     {
         $expected = 'Hadi Akbarzadeh';
         $translated = $this->localizer->get('name', 'developer'); // from `developer.php` file.
+
         $this->assertSame($expected, $translated);
     }
 
