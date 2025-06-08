@@ -1,5 +1,9 @@
 # Light Localziation for PHP
 
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/b14ef73b-a458-4d7f-84f8-8ce6b8d84740" width="400"/>
+</p>
+
 > A light weight, key-value & path-based PHP localization library that translations are loaded up when needed.
 
 ## 🫡 Usage
@@ -70,6 +74,6 @@ Additionally, instead of specifying a default localizer, a string can be designa
 
 ## 📖 License
 
-Copyright (c) 2024 Hadi Akbarzadeh
+Copyright (c) Hadi Akbarzadeh
 
 Licensed under the MIT license, see [LICENSE.md](LICENSE.md) for details.
